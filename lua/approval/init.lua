@@ -108,7 +108,7 @@ function M.run_nearest()
   local test_name = nil
 
   for i = #lines, 1, -1 do
-    local match = lines[i]:match("def%s+(test_%w+)")
+    local match = lines[i]:match("def%s+(test_[%w_]+)")
     if match then
       test_name = match
       break

@@ -26,18 +26,14 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ## Setup
 
-Add a `conftest.py` to your test directory to prevent approvaltests from launching external diff tools:
+The plugin automatically suppresses external diff tools (e.g. VS Code) by injecting a `ReportQuietly` reporter via a bundled pytest plugin. No `conftest.py` needed.
 
-```python
-import pytest
-from approvaltests import set_default_reporter
-from approvaltests.reporters.report_quietly import ReportQuietly
+To disable this and manage the reporter yourself, set `inject_reporter_plugin = false` in your setup:
 
-
-@pytest.fixture(scope="session", autouse=True)
-def disable_approval_diff_tools():
-    """Prevent approvaltests from launching external diff tools."""
-    set_default_reporter(ReportQuietly())
+```lua
+require("approval").setup({
+  inject_reporter_plugin = false,
+})
 ```
 
 ## Keymaps
@@ -67,8 +63,9 @@ Inside the diff popup:
 
 ```lua
 require("approval").setup({
-  pytest_cmd = "pytest",              -- pytest executable
+  pytest_cmd = "pytest",                -- pytest executable
   pytest_args = { "-v", "--tb=short" }, -- default pytest arguments
+  inject_reporter_plugin = true,        -- auto-suppress external diff tools
   keymaps = {
     run_nearest = "<leader>tn",
     run_file = "<leader>tf",

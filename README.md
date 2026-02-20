@@ -16,7 +16,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  "alielmasry/pytest-approve.nvim",
+  "alimasry/pytest-approve.nvim",
   config = function()
     require("approval").setup()
   end,

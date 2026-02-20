@@ -1,0 +1,5 @@
+*.received.txt
+*.approved.txt
+__pycache__/
+.pytest_cache/
+*.pyc
